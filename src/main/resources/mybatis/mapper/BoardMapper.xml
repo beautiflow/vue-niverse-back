@@ -20,4 +20,16 @@
         ORDER BY id DESC
     </select>
 
+    <select id="findById" resultType="com.project.vue_niverse.dto.BoardDto">
+        select
+            id,
+            title,
+            content,
+            author,
+            created_at AS createdAt,
+            updated_at AS updatedAt
+        FROM board
+        where id = #{id}
+    </select>
+
 </mapper>

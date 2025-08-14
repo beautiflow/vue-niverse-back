@@ -8,4 +8,6 @@ public interface BoardService {
 
     int createBoard(BoardDto boardDto);
     List<BoardDto> findAll();
+
+    BoardDto getBoard(long id);
 }

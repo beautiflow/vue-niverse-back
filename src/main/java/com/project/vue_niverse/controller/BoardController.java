@@ -46,4 +46,13 @@ public class BoardController {
         _log.info("Board created successfully with ID: {}", created);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
+
+    // 게시판 단일 조회
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getBoardById(@PathVariable long id) {
+        BoardDto board  = boardService.getBoard(id);
+        _log.info(board.getId()+ " " + board.getTitle());
+
+        return ResponseEntity.ok(board);
+    }
 }

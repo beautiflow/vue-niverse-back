@@ -10,4 +10,6 @@ public interface BoardMapper {
 
     int insertBoard(BoardDto boardDto);
     List<BoardDto> findAll();
+
+    BoardDto findById(long id);
 }
