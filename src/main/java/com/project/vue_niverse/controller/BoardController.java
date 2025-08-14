@@ -1,0 +1,49 @@
+package com.project.vue_niverse.controller;
+
+import com.project.vue_niverse.dto.BoardDto;
+import com.project.vue_niverse.service.BoardService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+
+@RestController
+@RequestMapping("/board")
+public class BoardController {
+    private final BoardService boardService;
+    private static final Logger _log = LoggerFactory.getLogger(BoardController.class);
+
+    public BoardController(BoardService boardService) {
+        this.boardService = boardService;
+    }
+
+    // 게시판 전체 조회
+    @GetMapping
+    public ResponseEntity<Object> findAll() {
+        List<BoardDto> boards = boardService.findAll();
+        for(BoardDto board : boards) {
+            _log.info(board.getId()+ " " + board.getCreatedAt());
+        }
+        if (boards.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(boards);
+    }
+
+    // 게시판 생성
+    @PostMapping
+    public ResponseEntity<Integer> createBoard(@RequestBody BoardDto boardDto) {
+        _log.info("Board created = " + boardDto.getTitle());
+        int created = boardService.createBoard(boardDto);
+        if (created != 1) {
+            _log.warn("Failed to create board with title: {}", boardDto.getTitle());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        _log.info("Board created successfully with ID: {}", created);
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    }
+}
