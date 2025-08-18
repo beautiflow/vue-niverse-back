@@ -13,4 +13,6 @@ public interface BoardService {
     BoardDto getBoard(long id);
 
     BoardDto updateBoard(long id, BoardDto boardDto);
+
+    void deleteBoard(long id);
 }

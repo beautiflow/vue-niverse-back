@@ -49,4 +49,9 @@ public class BoardServiceImpl implements BoardService {
         return null;
     }
 
+    @Override
+    public void deleteBoard(long id) {
+        boardMapper.deleteBoard(id);
+    }
+
 }

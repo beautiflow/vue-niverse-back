@@ -16,4 +16,6 @@ public interface BoardMapper {
     BoardDto findById(long id);
 
     int updateBoard(@Param("id") long id, @Param("boardDto") BoardDto boardDto);
+
+    void deleteBoard(long id);
 }

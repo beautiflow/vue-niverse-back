@@ -42,4 +42,9 @@
             id = #{id}
     </update>
 
+    <delete id="deleteBoard">
+        delete from board
+        where id = #{id}
+    </delete>
+
 </mapper>
