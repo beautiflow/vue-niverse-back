@@ -1,7 +1,5 @@
 package com.project.vue_niverse.controller;
 
-import com.project.vue_niverse.mapper.VisitMapper;
-import com.project.vue_niverse.service.BoardService;
 import com.project.vue_niverse.service.VisitService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
