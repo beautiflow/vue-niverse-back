@@ -7,7 +7,10 @@ import java.util.List;
 public interface BoardService {
 
     int createBoard(BoardDto boardDto);
+
     List<BoardDto> findAll();
 
     BoardDto getBoard(long id);
+
+    BoardDto updateBoard(long id, BoardDto boardDto);
 }

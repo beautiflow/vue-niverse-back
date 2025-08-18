@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -20,6 +22,7 @@ public class BoardDto {
 
     private String author;
 
-    private Date createdAt;
-    private Date updateAt;
+    private Timestamp createdAt;
+
+    private Timestamp updatedAt;
 }

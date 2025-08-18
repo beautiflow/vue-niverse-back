@@ -25,9 +25,6 @@ public class BoardController {
     @GetMapping
     public ResponseEntity<Object> findAll() {
         List<BoardDto> boards = boardService.findAll();
-        for(BoardDto board : boards) {
-            _log.info(board.getId()+ " " + board.getCreatedAt());
-        }
         if (boards.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
@@ -37,22 +34,32 @@ public class BoardController {
     // 게시판 생성
     @PostMapping
     public ResponseEntity<Integer> createBoard(@RequestBody BoardDto boardDto) {
-        _log.info("Board created = " + boardDto.getTitle());
         int created = boardService.createBoard(boardDto);
         if (created != 1) {
             _log.warn("Failed to create board with title: {}", boardDto.getTitle());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        _log.info("Board created successfully with ID: {}", created);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     // 게시판 단일 조회
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getBoardById(@PathVariable long id) {
+    public ResponseEntity<BoardDto> getBoardById(@PathVariable long id) {
         BoardDto board  = boardService.getBoard(id);
-        _log.info(board.getId()+ " " + board.getTitle());
-
+        if (board == null) {
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(board);
+    }
+
+    // 게시판 수정
+    @PutMapping("/{id}")
+    public ResponseEntity<BoardDto> updateBoard(@PathVariable long id, @RequestBody BoardDto boardDto) {
+        BoardDto update = boardService.updateBoard(id, boardDto);
+        if (update == null) {
+            _log.warn("Failed to update board with ID: {}", id);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        return ResponseEntity.ok(update);
     }
 }

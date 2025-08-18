@@ -32,4 +32,14 @@
         where id = #{id}
     </select>
 
+    <update id="updateBoard" parameterType="com.project.vue_niverse.dto.BoardDto">
+        update board
+        set
+            title = #{boardDto.title},
+            content = #{boardDto.content},
+            updated_at = #{boardDto.updatedAt}
+        where
+            id = #{id}
+    </update>
+
 </mapper>
