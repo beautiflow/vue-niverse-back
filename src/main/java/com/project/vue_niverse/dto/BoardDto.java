@@ -1,26 +1,34 @@
 package com.project.vue_niverse.dto;
 
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
-@Setter
 @Getter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class BoardDto {
 
-    private long id;
+    long id;
 
-    private String title;
+    @Setter
+    String title;
 
-    private String content;
+    @Setter
+    String content;
 
-    private String author;
+    @Setter
+    String author;
 
-    private Timestamp createdAt;
+    @Setter
+    LocalDateTime createdAt;
 
-    private Timestamp updatedAt;
+    @Setter
+    LocalDateTime updatedAt;
 }
