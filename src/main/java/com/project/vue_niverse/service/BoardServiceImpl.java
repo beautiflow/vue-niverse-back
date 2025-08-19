@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -17,6 +18,7 @@ public class BoardServiceImpl implements BoardService {
 
     private final BoardMapper boardMapper;
 
+    @Transactional
     @Override
     public int createBoard(BoardDto boardDto) {
         int success = boardMapper.insertBoard(boardDto);
@@ -40,6 +42,7 @@ public class BoardServiceImpl implements BoardService {
         return existDto;
     }
 
+    @Transactional
     @Override
     public BoardDto updateBoard(long id, BoardDto boardDto) {
         getBoard(id);
@@ -50,6 +53,7 @@ public class BoardServiceImpl implements BoardService {
         throw new IllegalStateException("Update failed for board id: " + id);
     }
 
+    @Transactional
     @Override
     public void deleteBoard(long id) {
         getBoard(id);
