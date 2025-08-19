@@ -6,8 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -40,7 +38,6 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public BoardDto updateBoard(long id, BoardDto boardDto) {
-        boardDto.setUpdatedAt(Timestamp.valueOf(LocalDateTime.now()));
         int result = boardMapper.updateBoard(id, boardDto);
 
         if (result > 0) {
