@@ -7,5 +7,5 @@ public interface VisitMapper {
 
     int countVisits();
 
-    int plusVisits(int visits);
+    int plusVisits();
 }

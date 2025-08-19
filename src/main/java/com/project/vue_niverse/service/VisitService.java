@@ -4,5 +4,5 @@ public interface VisitService {
 
     int countVisits();
 
-    int plusVisits(int visits);
+    int plusVisits();
 }

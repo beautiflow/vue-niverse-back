@@ -21,14 +21,14 @@ public class VisitController {
     // 전제 방문자수 조회
     @GetMapping
     public int countVisits() {
-        int currentVisits = visitService.countVisits();
-        return currentVisits;
+        return visitService.countVisits();
     }
 
     @PutMapping
     public int updateVisits() {
-        int currentVisits = visitService.countVisits();
-        return visitService.plusVisits(currentVisits);
+        visitService.plusVisits();
+        return visitService.countVisits();
+
     }
 
 

@@ -19,7 +19,7 @@ public class VisitServiceImpl implements VisitService {
     }
 
     @Override
-    public int plusVisits(int visits) {
-        return visitMapper.plusVisits(++visits);
+    public int plusVisits() {
+        return visitMapper.plusVisits();
     }
 }
