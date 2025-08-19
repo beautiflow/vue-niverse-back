@@ -2,20 +2,19 @@ package com.project.vue_niverse.service;
 
 import com.project.vue_niverse.dto.BoardDto;
 import com.project.vue_niverse.mapper.BoardMapper;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class BoardServiceImpl implements BoardService {
     private static final Logger _log = LoggerFactory.getLogger(BoardServiceImpl.class);
 
     private final BoardMapper boardMapper;
-    public BoardServiceImpl(BoardMapper boardMapper) {
-        this.boardMapper = boardMapper;
-    }
 
     @Override
     public int createBoard(BoardDto boardDto) {

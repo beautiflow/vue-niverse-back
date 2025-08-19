@@ -2,6 +2,7 @@ package com.project.vue_niverse.controller;
 
 import com.project.vue_niverse.dto.BoardDto;
 import com.project.vue_niverse.service.BoardService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -10,16 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/board")
 public class BoardController {
     private static final Logger _log = LoggerFactory.getLogger(BoardController.class);
     private final BoardService boardService;
-
-    public BoardController(BoardService boardService) {
-        this.boardService = boardService;
-    }
 
     // 게시판 전체 조회
     @GetMapping
