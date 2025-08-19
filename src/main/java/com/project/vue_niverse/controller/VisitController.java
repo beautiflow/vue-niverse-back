@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/visit")
 public class VisitController {
-    private static final Logger _log = LoggerFactory.getLogger(VisitController.class);
-
     private final VisitService visitService;
-
 
     // 전제 방문자수 조회
     @GetMapping
