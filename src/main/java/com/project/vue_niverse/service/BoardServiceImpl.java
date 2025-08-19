@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
 @Service
@@ -32,21 +33,26 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public BoardDto getBoard(long id) {
-        return boardMapper.findById(id);
+        BoardDto existDto = boardMapper.findById(id);
+        if (existDto == null) {
+            throw new NoSuchElementException("Board with id " + id + " not found");
+        }
+        return existDto;
     }
 
     @Override
     public BoardDto updateBoard(long id, BoardDto boardDto) {
+        getBoard(id);
         int result = boardMapper.updateBoard(id, boardDto);
-
         if (result > 0) {
             return boardMapper.findById(id);
         }
-        return null;
+        throw new IllegalStateException("Update failed for board id: " + id);
     }
 
     @Override
     public void deleteBoard(long id) {
+        getBoard(id);
         boardMapper.deleteBoard(id);
     }
 
