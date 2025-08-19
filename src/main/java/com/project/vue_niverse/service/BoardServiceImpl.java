@@ -22,10 +22,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public int createBoard(BoardDto boardDto) {
         int success = boardMapper.insertBoard(boardDto);
-        if (success > 0) {
-            return success;
-        }
-        return -1;
+        return success;
     }
 
     @Override

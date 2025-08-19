@@ -28,12 +28,14 @@ public class BoardController {
     // 게시판 생성
     @PostMapping
     public ResponseEntity<Integer> createBoard(@RequestBody BoardDto boardDto) {
-        int created = boardService.createBoard(boardDto);
-        if (created != 1) {
+        try {
+            int created = boardService.createBoard(boardDto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(created);
+        }
+        catch (Exception e) {
             _log.warn("Failed to create board with title: {}", boardDto.getTitle());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     // 게시판 단일 조회
