@@ -1,6 +1,5 @@
 package com.project.vue_niverse.controller;
 
-import com.project.vue_niverse.dto.BoardDto;
 import com.project.vue_niverse.dto.PointDto;
 import com.project.vue_niverse.service.PointService;
 import lombok.RequiredArgsConstructor;
