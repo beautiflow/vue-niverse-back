@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.vue_niverse.mapper.PointMapper">
+    <insert id="savePoint" parameterType="PointDto">
+        INSERT INTO point (name, geom)
+        VALUES (#{name}, ST_GeomFromText(#{geom}, 4326))
+    </insert>
+
+</mapper>
