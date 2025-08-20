@@ -30,11 +30,19 @@ public class BoardController {
     public ResponseEntity<Integer> createBoard(@RequestBody BoardDto boardDto) {
         try {
             int created = boardService.createBoard(boardDto);
-            return ResponseEntity.status(HttpStatus.CREATED).body(created);
+
+            if (created == 1) {
+                return ResponseEntity.status(HttpStatus.CREATED).body(created);
+            } else {
+                _log.warn("Board creation failed (affected rows: {}) with title: {}", created, boardDto.getTitle());
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .build();
+            }
         }
         catch (Exception e) {
-            _log.warn("Failed to create board with title: {}", boardDto.getTitle());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            _log.error("Exception occurred while creating board with title: {}", boardDto.getTitle(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .build();
         }
     }
 
