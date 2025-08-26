@@ -23,7 +23,4 @@ public class PolygonDto {
 
     @Setter
     LocalDateTime created;
-
-    @Setter
-    LocalDateTime updated;
 }

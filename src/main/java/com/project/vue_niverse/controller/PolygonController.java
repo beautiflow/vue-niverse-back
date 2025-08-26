@@ -5,6 +5,7 @@ import com.project.vue_niverse.service.PolygonService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,8 +27,20 @@ public class PolygonController {
 
         _log.info("Saving polygon {}", polygonDto.getName());
         _log.info("Saving polygon {}", polygonDto.getGeom());
-        int saved = polygonService.savePolygon(polygonDto);
-        _log.info("saved polygon {}", saved);
-        return null;
+        try {
+            int saved = polygonService.savePolygon(polygonDto);
+            if (saved == 1) {
+                _log.info("saved polygon {}", saved);
+                return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+            } else {
+                _log.warn("Polygon creation failed (affected rows: {}) with title: {}", saved, polygonDto.getName());
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .build();
+            }
+        }catch (Exception e){
+            _log.error("Exception occurred while saving polygon with title: {}", polygonDto.getName(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .build();
+        }
     }
 }
