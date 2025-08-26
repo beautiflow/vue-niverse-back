@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.vue_niverse.mapper.LineMapper">
+    <insert id="saveLine4326" parameterType="LineDto">
+        INSERT INTO line (name, geom)
+        VALUES (#{name}, ST_GeomFromText(#{geom}, 4326))
+    </insert>
+
+</mapper>
