@@ -2,6 +2,7 @@ package com.project.vue_niverse.controller;
 
 import com.project.vue_niverse.service.VisitService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

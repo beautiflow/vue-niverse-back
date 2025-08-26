@@ -12,7 +12,6 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 @Service
 public class BoardServiceImpl implements BoardService {
-//    private static final Logger _log = LoggerFactory.getLogger(BoardServiceImpl.class);
 
     private final BoardMapper boardMapper;
 

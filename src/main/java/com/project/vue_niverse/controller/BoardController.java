@@ -3,6 +3,7 @@ package com.project.vue_niverse.controller;
 import com.project.vue_niverse.dto.BoardDto;
 import com.project.vue_niverse.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -11,11 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/board")
 public class BoardController {
-    private static final Logger _log = LoggerFactory.getLogger(BoardController.class);
     private final BoardService boardService;
 
     // 게시판 전체 조회
@@ -34,13 +35,13 @@ public class BoardController {
             if (created == 1) {
                 return ResponseEntity.status(HttpStatus.CREATED).body(created);
             } else {
-                _log.warn("Board creation failed (affected rows: {}) with title: {}", created, boardDto.getTitle());
+                log.warn("Board creation failed (affected rows: {}) with title: {}", created, boardDto.getTitle());
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                         .build();
             }
         }
         catch (Exception e) {
-            _log.error("Exception occurred while creating board with title: {}", boardDto.getTitle(), e);
+            log.error("Exception occurred while creating board with title: {}", boardDto.getTitle(), e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .build();
         }
@@ -65,7 +66,7 @@ public class BoardController {
             BoardDto update = boardService.updateBoard(id, boardDto);
             return ResponseEntity.ok(update);
         }catch(Exception e) {
-            _log.warn("Failed to update board with ID: {}", id);
+            log.warn("Failed to update board with ID: {}", id);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
