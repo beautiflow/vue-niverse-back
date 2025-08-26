@@ -40,10 +40,10 @@ public class BoardServiceImpl implements BoardService {
     public BoardDto updateBoard(long id, BoardDto boardDto) {
         getBoard(id);
         int result = boardMapper.updateBoard(id, boardDto);
-        if (result > 0) {
-            return boardMapper.findById(id);
+        if (result != 1) {
+            throw new IllegalStateException("Update failed for board id: " + id);
         }
-        throw new IllegalStateException("Update failed for board id: " + id);
+        return boardMapper.findById(id);
     }
 
     @Transactional
