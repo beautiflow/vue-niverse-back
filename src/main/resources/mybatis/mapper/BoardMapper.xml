@@ -43,7 +43,7 @@
             id = #{id}
     </update>
 
-    <delete id="deleteBoard">
+    <delete id="deleteBoard" parameterType="long">
         DELETE FROM board
         WHERE id = #{id}
     </delete>
