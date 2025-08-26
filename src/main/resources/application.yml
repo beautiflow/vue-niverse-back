@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: vue-niverse
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: nypostgres
+    driver-class-name: org.postgresql.Driver
+
+mybatis:
+#  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.project.vue_niverse.dto
